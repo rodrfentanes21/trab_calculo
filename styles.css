@@ -93,3 +93,13 @@ button {
     font-style: italic;
     font-weight: 700;
 }
+
+@media screen and (max-width: 700px) {
+    #card-title {
+        display: none;
+    }
+
+    .footer-text {
+        font-size: .8em;
+    }
+}
