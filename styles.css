@@ -103,3 +103,9 @@ button {
         font-size: .8em;
     }
 }
+
+@media screen and (max-height: 700px) {
+    #card-title {
+        display: none;
+    }
+}
