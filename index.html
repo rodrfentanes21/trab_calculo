@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <title>Trabalho Integral</title>
+    <py-env>
+        - paths:
+            - /teste.py
+    </py-env>
 </head>
 
 <body>
@@ -21,7 +26,7 @@
             <div class="card-header" id="card-title">
                 <h3><strong>Calculadora de Integral</strong></h3>
             </div>
-            <form class="form-main">
+            <div class="form-main">
                 <div class="form-group">
                     <div class="limit-wrapper">
                         <div class="checkbox-wrapper">
@@ -30,8 +35,8 @@
                                 onclick="enable_text(this.checked)" class="medium" />
                         </div>
                         <div class="limit-input-wrapper">
-                            <input type="text" disabled="disabled" placeholder="Min" id="first-input"/>
-                            <input type="text" disabled="disabled" placeholder="Max" id="second-input"/>
+                            <input type="text" disabled="disabled" placeholder="Min" id="first-input" />
+                            <input type="text" disabled="disabled" placeholder="Max" id="second-input" />
                         </div>
                     </div>
                     <div class="integral-input-wrapper">
@@ -40,8 +45,14 @@
                         <label for="InputIntegral"><small>dx</small></label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-danger">Calcular</button>
-            </form>
+
+                <button onclick="getValues()" id="btn" class="btn btn-danger">Calcular</button>
+                <py-script>
+                    from teste import *
+                    integrationMethod(x**2)
+                </py-script>
+            </div>
+
         </div>
     </main>
     <footer>
@@ -56,6 +67,8 @@
     </footer>
 </body>
 
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -66,16 +79,9 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/47ade21820.js" crossorigin="anonymous"></script>
-<script>
-    function enable_text(check) {
-        if (check) {
-            document.getElementById("first-input").disabled = false;
-            document.getElementById("second-input").disabled = false;
-        } else {
-            document.getElementById("first-input").disabled = true;
-            document.getElementById("second-input").disabled = true;
-        }
-    }
-</script>
+<!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
+<script src="app.js"></script>
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 
 </html>
