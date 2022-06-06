@@ -36,7 +36,7 @@ main {
 }
 
 #card-title {
-   background-color: #e6b1ac;
+    background-color: #e6b1ac;
 }
 
 .form-main {
@@ -94,7 +94,7 @@ main {
     top: -3px;
 }
 
-.limit-input-wrapper > input {
+.limit-input-wrapper>input {
     width: 2.5em;
 }
 
