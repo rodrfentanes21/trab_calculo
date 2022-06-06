@@ -23,12 +23,25 @@
             </div>
             <form class="form-main">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">&#x222b;</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Insira a Integral">
-                  <label for="exampleInputEmail1"><small>dx</small></label>
+                    <div class="limit-wrapper">
+                        <div class="checkbox-wrapper">
+                            <label for="InputIntegral">Definida:</label>
+                            <input type="checkbox" class="limit-form-checkbox" name="limit-checkbox"
+                                onclick="enable_text(this.checked)" class="medium" />
+                        </div>
+                        <div class="limit-input-wrapper">
+                            <input type="text" disabled="disabled" placeholder="Min" />
+                            <input type="text" disabled="disabled" placeholder="Max" />
+                        </div>
+                    </div>
+                    <div class="integral-input-wrapper">
+                        <label for="InputIntegral">&#x222b;</label>
+                        <input type="email" class="form-control" id="InputIntegral" placeholder="Insira a Integral">
+                        <label for="InputIntegral"><small>dx</small></label>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-danger">Calcular</button>
-              </form>
+            </form>
         </div>
     </main>
     <footer>
@@ -53,5 +66,10 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/47ade21820.js" crossorigin="anonymous"></script>
+<script>
+    $("input:checkbox").click(function () {
+        $("input:text").attr("disabled", !this.checked);
+    });
+</script>
 
 </html>
