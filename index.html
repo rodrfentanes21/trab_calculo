@@ -30,8 +30,8 @@
                                 onclick="enable_text(this.checked)" class="medium" />
                         </div>
                         <div class="limit-input-wrapper">
-                            <input type="text" disabled="disabled" placeholder="Min" />
-                            <input type="text" disabled="disabled" placeholder="Max" />
+                            <input type="text" disabled="disabled" placeholder="Min" id="first-input"/>
+                            <input type="text" disabled="disabled" placeholder="Max" id="second-input"/>
                         </div>
                     </div>
                     <div class="integral-input-wrapper">
@@ -67,9 +67,15 @@
     crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/47ade21820.js" crossorigin="anonymous"></script>
 <script>
-    $("input:checkbox").click(function () {
-        $("input:text").attr("disabled", !this.checked);
-    });
+    function enable_text(check) {
+        if (check) {
+            document.getElementById("first-input").disabled = false;
+            document.getElementById("second-input").disabled = false;
+        } else {
+            document.getElementById("first-input").disabled = true;
+            document.getElementById("second-input").disabled = true;
+        }
+    }
 </script>
 
 </html>
