@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <title>Trabalho Integral</title>
     <py-env>
-        - paths:
-            - /teste.py
+        - sympy
     </py-env>
 </head>
 
@@ -48,8 +47,11 @@
 
                 <button onclick="getValues()" id="btn" class="btn btn-danger">Calcular</button>
                 <py-script>
-                    from teste import *
-                    print(integrationMethod(x**2) + " +C")
+                    import sympy as sp
+                    x = sp.symbols('x', real=True)
+                    p = 2*x / (x**2-5*x+6)
+                    value = sp.integrate(p, x)
+                    print(value)
                 </py-script>
             </div>
 
