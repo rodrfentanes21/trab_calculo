@@ -111,6 +111,17 @@ main {
     font-family: 'Fira Sans', sans-serif;
 }
 
+#output-receiver {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Fira Sans', sans-serif;
+}
+
 button {
     width: 100%;
 }
@@ -120,8 +131,6 @@ button {
     top: 1rem;
     font-weight: 700;
 }
-
-
 
 .footer-wrapper {
     position: absolute;
@@ -139,6 +148,10 @@ button {
     color: #131518;
     font-style: italic;
     font-weight: 700;
+}
+
+.plus-c {
+    z-index: 1000;
 }
 
 @media screen and (max-width: 700px) {

@@ -43,15 +43,35 @@
                         <input type="text" class="form-control" id="InputIntegral" placeholder="Insira a Integral">
                         <label for="InputIntegral"><small>dx</small></label>
                     </div>
+                    
+                </div>
+                <button onclick="{{indefiniteFunction()}}" id="btn" class="btn btn-danger">Calcular</button>
+                <div id="output-receiver">
+
                 </div>
 
-                <button onclick="getValues()" id="btn" class="btn btn-danger">Calcular</button>
-                <py-script>
+                <py-script output="output-receiver">
                     import sympy as sp
-                    x = sp.symbols('x', real=True)
-                    p = 2*x / (x**2-5*x+6)
-                    value = sp.integrate(p, x)
-                    print(value)
+                    import js
+                    from js import document
+
+                    def defineFunction(checkbox_value, p):
+                        if checkbox_value:
+                            return 0
+                        else:
+                            return indefiniteFunction(p)
+
+                    def indefiniteFunction(p):
+                        x = sp.symbols('x', real=True)
+                        value = sp.integrate(p, x)
+                        print('Resultado: ' + str(value) + '+C')
+                    
+                    
+                    def main():
+                        x = sp.symbols('x', real=True)
+                        p = 2*x / (x**2-5*x+6)
+                        defineFunction(False, p)
+                    main()
                 </py-script>
             </div>
 
