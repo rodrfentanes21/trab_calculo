@@ -38,7 +38,7 @@
                             <input type="number" disabled="disabled" placeholder="Max" id="second-input" />
                         </div>
                     </div>
-                    <div class="integral-input-wrapper">
+                    <div class="integral-input-wrapper" id="input-seila">
                         <label for="InputIntegral">&#x222b;</label>
                         <input type="text" class="form-control" id="InputIntegral" placeholder="Insira a Integral">
                         <label for="InputIntegral"><small>dx</small></label>
@@ -56,31 +56,32 @@
                     import js
                     from js import document
                     from pyodide import create_proxy
+                    
                 
                     def defineFunction(checkbox_value, p):
                         if checkbox_value == False:
-                            console.log("Indefinida")
                             return indefiniteFunction(p)
                         else:
-                            console.log("Definida")
                             return definiteFunction(p, document.getElementById("first-input").value, document.getElementById("second-input").value)
 
                     def indefiniteFunction(p):
-                        x = sp.symbols('x', real=True)
-                        console.log(str(p))
-                        value = sp.integrate(p, x)
+                        
+                        console.log(p.element.value)
+                        
+                        value = sp.integrate(p.element.value, x)
                         document.getElementById("output-receiver").innerHTML = str(value) + '+C';
                     
                     def definiteFunction(p, first_input, second_input):
-                        x = sp.symbols('x', real=True)
-                        console.log(str(p))
-                        value = sp.integrate(p, (x, float(first_input), float(second_input)))
+                        
+                        console.log(p.element.value)
+                        
+                        value = sp.integrate(p.element.value, (x, float(first_input), float(second_input)))
                         document.getElementById("output-receiver").innerHTML = str(value) + '+C';
 
-                    def runPython(event):
-                        x = sp.symbols('x', real=True)
-                        p = str(document.getElementById("InputIntegral").value)
-                        console.log(p)
+                    def runPython(event): 
+                        
+                        p = Element("InputIntegral")
+                        console.log(p.element.value)
 
                         par = document.getElementById("checkbox-id").checked
                         defineFunction(par, p)
@@ -90,6 +91,8 @@
                         function_proxy = create_proxy(runPython)
                     
                         document.getElementById("button").addEventListener("click", function_proxy)
+                    sp.init_printing(use_unicode=True)
+                    x = sp.symbols('x', real=True)
                     main()
                 </py-script>
             </div>

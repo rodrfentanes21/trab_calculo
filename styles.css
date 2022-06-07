@@ -96,6 +96,7 @@ main {
 
 .limit-input-wrapper>input {
     width: 2.5em;
+    font-weight: 700;
 }
 
 .limit-form-checkbox {
