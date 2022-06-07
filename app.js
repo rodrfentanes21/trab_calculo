@@ -14,11 +14,13 @@ function enable_text(check) {
 // TODO INDEFINIDAS NAO PRECISA PRA JS
 // 2x / (x^2-5x+6)
 // 2x / ((x-1)(x-2)(x-4))
+let toggleButton = false;
 
-function getValues() {
-    let original = document.getElementById("InputIntegral").value;
-    let inferior = document.getElementById("first-input").value;
-    let superior = document.getElementById("second-input").value;
+function trigger() {
+    toggleButton = !toggleButton;
+    document.getElementById('button-id').click() = true;
+    alert(document.getElementById('button-id').click())
+    return toggleButton;
 }
 
 

@@ -150,8 +150,8 @@ button {
     font-weight: 700;
 }
 
-.plus-c {
-    z-index: 1000;
+.integral-input-wrapper>input {
+    font-weight: 700;
 }
 
 @media screen and (max-width: 700px) {

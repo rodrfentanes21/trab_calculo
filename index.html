@@ -31,11 +31,11 @@
                         <div class="checkbox-wrapper">
                             <label for="InputIntegral">Definida:</label>
                             <input type="checkbox" class="limit-form-checkbox" name="limit-checkbox"
-                                onclick="enable_text(this.checked)" class="medium" />
+                                onclick="enable_text(this.checked)" class="medium" id="checkbox-id"/>
                         </div>
                         <div class="limit-input-wrapper">
-                            <input type="text" disabled="disabled" placeholder="Min" id="first-input" />
-                            <input type="text" disabled="disabled" placeholder="Max" id="second-input" />
+                            <input type="number" disabled="disabled" placeholder="Min" id="first-input" />
+                            <input type="number" disabled="disabled" placeholder="Max" id="second-input" />
                         </div>
                     </div>
                     <div class="integral-input-wrapper">
@@ -45,32 +45,51 @@
                     </div>
                     
                 </div>
-                <button onclick="{{indefiniteFunction()}}" id="btn" class="btn btn-danger">Calcular</button>
+                <button type ="button" id="button" class="btn btn-danger">Calcular</button>
                 <div id="output-receiver">
 
                 </div>
 
                 <py-script output="output-receiver">
                     import sympy as sp
+                    from sympy import sympify
                     import js
                     from js import document
-
+                    from pyodide import create_proxy
+                
                     def defineFunction(checkbox_value, p):
-                        if checkbox_value:
-                            return 0
-                        else:
+                        if checkbox_value == False:
+                            console.log("Indefinida")
                             return indefiniteFunction(p)
+                        else:
+                            console.log("Definida")
+                            return definiteFunction(p, document.getElementById("first-input").value, document.getElementById("second-input").value)
 
                     def indefiniteFunction(p):
                         x = sp.symbols('x', real=True)
+                        console.log(str(p))
                         value = sp.integrate(p, x)
-                        print('Resultado: ' + str(value) + '+C')
+                        document.getElementById("output-receiver").innerHTML = str(value) + '+C';
                     
-                    
-                    def main():
+                    def definiteFunction(p, first_input, second_input):
                         x = sp.symbols('x', real=True)
-                        p = 2*x / (x**2-5*x+6)
-                        defineFunction(False, p)
+                        console.log(str(p))
+                        value = sp.integrate(p, (x, float(first_input), float(second_input)))
+                        document.getElementById("output-receiver").innerHTML = str(value) + '+C';
+
+                    def runPython(event):
+                        x = sp.symbols('x', real=True)
+                        p = str(document.getElementById("InputIntegral").value)
+                        console.log(p)
+
+                        par = document.getElementById("checkbox-id").checked
+                        defineFunction(par, p)
+
+
+                    def main():
+                        function_proxy = create_proxy(runPython)
+                    
+                        document.getElementById("button").addEventListener("click", function_proxy)
                     main()
                 </py-script>
             </div>
